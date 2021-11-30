@@ -5,57 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel='stylesheet' href='style.css'>
 </head>
 <body>
     <div id="container">
         <div id="top">
             <div id="display">
-                <p>0</p>
+                <p id="digit">0</p>
             </div>
         </div>
         <div id="bottom">
-            <div id="row-1">
-                <div id="1-top">
-                    <button class="memory">mc</button>
-                    <button class="memory">m+</button>
-                    <button class="memory">m-</button>
-                    <button class="memory">mr</button>
+            <div class="row">
+                <div class="button-row-sd">
+                    <div class="button memory">mc</div>
+                    <div class="button memory">m+</div>
+                    <div class="button memory">m-</div>
+                    <div class="button memory">mr</div>
                 </div>
-                <div id="1-bottom">
-                    <button class="operator">AC</button>
-                    <button class="operator">+/−</button>
-                    <button class="operator">÷</button>
-                    <button class="operator">×</button>
-                </div>
-            </div>
-            <div id="row-2">
-                <div id="2-top">
-                    <button class="number">7</button>
-                    <button class="number">8</button>
-                    <button class="number">9</button>
-                    <button class="operator">−</button>
-                </div>
-                <div id="2-bottom">
-                    <button class="number">4</button>
-                    <button class="number">5</button>
-                    <button class="number">6</button>
-                    <button class="operator">+</button>
+                <div class="button-row-sd">
+                    <div class="button operator">AC</div>
+                    <div class="button operator">+/−</div>
+                    <div class="button operator">÷</div>
+                    <div class="button operator">×</div>
                 </div>
             </div>
-            <div id="row-3">
-                <div id="3-left">
-                    <div id="3-left-top">
-                        <button class="number">1</button>
-                        <button class="number">2</button>
-                        <button class="number">3</button>
+            <div class="row">
+                <div class="button-row-sd">
+                    <div class="button number">7</div>
+                    <div class="button number">8</div>
+                    <div class="button number">9</div>
+                    <div class="button operator">−</div>
+                </div>
+                <div class="button-row-sd">
+                    <div class="button number">4</div>
+                    <div class="button number">5</div>
+                    <div class="button number">6</div>
+                    <div class="button operator">+</div>
+                </div>
+            </div>
+            <div class="row-bottom">
+                <div class="bottom-left">
+                    <div class="button-row-sd">
+                        <div class="button number">1</div>
+                        <div class="button number">2</div>
+                        <div class="button number">3</div>
                     </div>
-                    <div id="3-left-bottom">
-                        <button class="number">0</button>
-                        <button class="number">.</button>
+                    <div class="button-row-sd"">
+                        <div class="button number" id="zero">0</div>
+                        <div class="button number" id="decimal">.</div>
                     </div>
                 </div>
-                <div id="3-right">
-                    <button>=</button>
+                <div class="bottom-right">
+                    <div class="equal">=</div>
                 </div>
             </div>
         </div>
