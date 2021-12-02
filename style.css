@@ -1,3 +1,8 @@
+@font-face {
+    font-family: digitalFont;
+    src: url(digital-7.ttf);
+}
+
 html {
     display: flex;
     justify-content: center;
@@ -22,6 +27,19 @@ body {
     box-shadow: 5px 5px 10px #7c3644;
 }
 
+#top {
+    display: flex;
+    flex-direction: column;
+}
+
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 10px;
+    color: #f5dadf;
+    font-weight: bold;
+}
+
 #display {
     display: flex;
     border: 1px solid black;
@@ -35,6 +53,7 @@ body {
 #digit {
     margin: 10px;
     font-size: 48px;
+    font-family: digitalFont;
 }
 
 .button, .bottom-right {
@@ -48,6 +67,7 @@ body {
     font-weight: bold;
     background-color: #aa4a5d;
     box-shadow: 0px 5px 2px #7c3644;
+    color: #f5dadf;
 }
 
 .button:active, .bottom-right:active {
