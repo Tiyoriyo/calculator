@@ -23,7 +23,7 @@ const decimal = document.getElementById('decimal');
 const equal = document.getElementById('=');
 
 let ans = 0;
-let currentNumber = '';
+let currentNumber = '0';
 let number1;
 let number2;
 let currentOperator = '';
@@ -33,7 +33,7 @@ digit.textContent = ans;
 
 AC.addEventListener('click', () => {
     ans = 0;
-    currentNumber = '';
+    currentNumber = '0';
     number1 = '';
     number2 = '';
     currentOperator = '';
@@ -45,6 +45,16 @@ equal.addEventListener('click', () => {
     if (!number2 && equalCheck == true) {
         currentOperator = '';
         digit.textContent = ans;
+    } else if (!number1 && !number2 && !currentNumber) {
+        return;
+    } else if (!number1 && !number2 && currentNumber && !currentOperator) {
+        number1 = currentNumber;
+        currentNumber = '';
+        digit.textContent = number1;
+    } else if (!number1) {
+        number1 = currentNumber;
+        digit.textContent = number1;
+        currentNumber = '';
     } else {
         number2 = currentNumber;
         currentNumber = '';
@@ -65,7 +75,7 @@ btnMultiply.addEventListener('click', () => {
     } else if (number1 && !number2 && equalCheck == true) {
         equalCheck = false;
         currentOperator = '*'
-    } else if (number1 && !number2 && currentOperator != '*') {
+    } else if (number1 && !number2 && currentNumber && currentOperator != '*') {
         equalCheck = false;
         number2 = currentNumber;
         currentNumber = '';
@@ -74,6 +84,8 @@ btnMultiply.addEventListener('click', () => {
         number1 = ans;
         currentOperator = '*'
         digit.textContent = number1; 
+    } else if (!number2 && !currentNumber) {
+        currentOperator = '*';
     } else if (number1 && !number2 && currentNumber) {
         equalCheck = false;
         number2 = currentNumber
@@ -93,7 +105,7 @@ btnPlus.addEventListener('click', () => {
     } else if (number1 && !number2 && equalCheck == true) {
         equalCheck = false;
         currentOperator = '+'
-    } else if (number1 && !number2 && currentOperator != '+') {
+    } else if (number1 && !number2 && currentNumber && currentOperator != '+') {
         equalCheck = false;
         number2 = currentNumber;
         currentNumber = '';
@@ -102,6 +114,8 @@ btnPlus.addEventListener('click', () => {
         number1 = ans;
         currentOperator = '+'
         digit.textContent = number1; 
+    } else if (!number2 && !currentNumber) {
+        currentOperator = '+';
     } else if (number1 && !number2 && currentNumber) {
         equalCheck = false;
         number2 = currentNumber
@@ -122,7 +136,7 @@ btnMinus.addEventListener('click', () => {
     } else if (number1 && !number2 && equalCheck == true) {
         equalCheck = false;
         currentOperator = '-'
-    } else if (number1 && !number2 && currentOperator != '-') {
+    } else if (number1 && !number2 && currentNumber && currentOperator != '-') {
         equalCheck = false;
         number2 = currentNumber;
         currentNumber = '';
@@ -131,6 +145,8 @@ btnMinus.addEventListener('click', () => {
         number1 = ans;
         currentOperator = '-'
         digit.textContent = number1; 
+    } else if (!number2 && !currentNumber) {
+        currentOperator = '-';
     } else if (number1 && !number2 && currentNumber) {
         equalCheck = false;
         number2 = currentNumber
@@ -150,7 +166,7 @@ btnDivide.addEventListener('click', () => {
     } else if (number1 && !number2 && equalCheck == true) {
         equalCheck = false;
         currentOperator = '/'
-    } else if (number1 && !number2 && currentOperator != '/') {
+    } else if (number1 && !number2 && currentNumber && currentOperator != '/') {
         equalCheck = false;
         number2 = currentNumber;
         currentNumber = '';
@@ -159,6 +175,8 @@ btnDivide.addEventListener('click', () => {
         number1 = ans;
         currentOperator = '/'
         digit.textContent = number1; 
+    } else if (!number2 && !currentNumber) {
+        currentOperator = '/'
     } else if (number1 && !number2 && currentNumber) {
         equalCheck = false;
         number2 = currentNumber
@@ -171,82 +189,115 @@ btnDivide.addEventListener('click', () => {
 });
 
 one.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '1';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '1';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '1';
-    digit.textContent = currentNumber;
 });
 
 two.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '2';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '2';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '2';
-    digit.textContent = currentNumber;
-})
+});
 
 three.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '3';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '3';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '3';
-    digit.textContent = currentNumber;
 });
 
 four.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '4';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '4';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '4';
-    digit.textContent = currentNumber;
 });
 
 five.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '5';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '5';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '5';
-    digit.textContent = currentNumber;
 });
 
 six.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '6';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '6';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '6';
-    digit.textContent = currentNumber;
 });
 
 seven.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '7';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '7';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '7';
-    digit.textContent = currentNumber;
 });
 
 eight.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '8';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '8';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '8';
-    digit.textContent = currentNumber;
 });
 
 nine.addEventListener('click', () => {
-    if (currentNumber == 0) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '9';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
         currentNumber = '';
+        currentNumber += '9';
+        digit.textContent = currentNumber;
     }
-    currentNumber += '9';
-    digit.textContent = currentNumber;
 });
 
 zero.addEventListener('click', () => {
-    if (currentNumber == 0) {
-        currentNumber = '';
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '0';
+        digit.textContent = currentNumber;
+    } else {
+        return;
     }
-    currentNumber += '0';
+});
+
+decimal.addEventListener('click', () => {
+    currentNumber += '.';
     digit.textContent = currentNumber;
 });
 
