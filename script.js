@@ -42,11 +42,15 @@ AC.addEventListener('click', () => {
 })
 
 equal.addEventListener('click', () => {
-    if (!number2 && equalCheck == true) {
-        currentOperator = '';
-        digit.textContent = ans;
+    if (number1 && !number2 && !currentOperator && currentNumber) {
+        number1 = currentNumber;
+        currentNumber = '';
+        digit.textContent = number1;
     } else if (!number1 && !number2 && !currentNumber) {
         return;
+    } else if (!number2 && equalCheck == true) {
+        currentOperator = '';
+        digit.textContent = ans;
     } else if (!number1 && !number2 && currentNumber && !currentOperator) {
         number1 = currentNumber;
         currentNumber = '';
@@ -188,107 +192,47 @@ btnDivide.addEventListener('click', () => {
     }
 });
 
-one.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '1';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '1';
-        digit.textContent = currentNumber;
-    }
+one.addEventListener('click', function() {
+    addNumber(1);
 });
 
-two.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '2';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '2';
-        digit.textContent = currentNumber;
-    }
+two.addEventListener('click', function() {
+    addNumber(2);
 });
 
-three.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '3';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '3';
-        digit.textContent = currentNumber;
-    }
+three.addEventListener('click', function() {
+    addNumber(3);
 });
 
-four.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '4';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '4';
-        digit.textContent = currentNumber;
-    }
+four.addEventListener('click', function() {
+    addNumber(4);
 });
 
-five.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '5';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '5';
-        digit.textContent = currentNumber;
-    }
+five.addEventListener('click', function() {
+    addNumber(5);
 });
 
-six.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '6';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '6';
-        digit.textContent = currentNumber;
-    }
+six.addEventListener('click', function() {
+    addNumber(6);
 });
 
-seven.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '7';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '7';
-        digit.textContent = currentNumber;
-    }
+seven.addEventListener('click', function() {
+    addNumber(7);
 });
 
-eight.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '8';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '8';
-        digit.textContent = currentNumber;
-    }
+eight.addEventListener('click', function() {
+    addNumber(8);
 });
 
-nine.addEventListener('click', () => {
-    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
-        currentNumber += '9';
-        digit.textContent = currentNumber;
-    } else if (currentNumber == 0){
-        currentNumber = '';
-        currentNumber += '9';
-        digit.textContent = currentNumber;
-    }
+nine.addEventListener('click', function() {
+    addNumber(9);
 });
 
 zero.addEventListener('click', () => {
     if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += '0';
+        digit.textContent = currentNumber;
+    } else if (currentNumber == '') {
         currentNumber += '0';
         digit.textContent = currentNumber;
     } else {
@@ -297,9 +241,24 @@ zero.addEventListener('click', () => {
 });
 
 decimal.addEventListener('click', () => {
-    currentNumber += '.';
-    digit.textContent = currentNumber;
+    if (currentNumber.includes('.')) {
+        return;
+    } else {
+        currentNumber += '.';
+        digit.textContent = currentNumber;
+    }
 });
+
+function addNumber(a) {
+    if (currentNumber.indexOf('.') > -1 || currentNumber > 0) {
+        currentNumber += a;
+        digit.textContent = currentNumber;
+    } else if (currentNumber == 0){
+        currentNumber = '';
+        currentNumber += a;
+        digit.textContent = currentNumber;
+    };
+};
 
 function add(a, b) {
     return +a + +b;
