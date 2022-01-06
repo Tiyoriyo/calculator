@@ -23,6 +23,9 @@ const decimal = document.getElementById('decimal');
 const equal = document.getElementById('=');
 const ansDisp = document.getElementById('ans');
 
+let operator = null;
+let currentNumber = '';
+
 function add(a, b) {
     return a + b;
 };
@@ -50,3 +53,44 @@ function operate(operator, num1, num2) {
         return divide(num1, num2);
     };
 };
+
+function addNumber(a) {
+    currentNumber += a.id;
+    digit.textContent = currentNumber;
+};
+
+one.addEventListener('click', () => {
+    addNumber(one);
+});
+
+two.addEventListener('click', () => {
+    addNumber(two);
+});
+
+three.addEventListener('click', () => {
+    addNumber(three);
+});
+
+four.addEventListener('click', () => {
+    addNumber(four);
+});
+
+five.addEventListener('click', () => {
+    addNumber(five);
+});
+
+six.addEventListener('click', () => {
+    addNumber(six);
+});
+
+seven.addEventListener('click', () => {
+    addNumber(seven);
+});
+
+eight.addEventListener('click', () => {
+    addNumber(eight);
+});
+
+nine.addEventListener('click', () => {
+    addNumber(nine);
+});
