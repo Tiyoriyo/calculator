@@ -43,12 +43,20 @@ body {
 
 #display {
     display: flex;
+    flex-direction: column;
     border: 1px solid black;
     justify-content: flex-end;
     align-items: flex-end;
     margin: 10px;
     height: 100px;
     background-color: #f5dadf;
+}
+
+#ans {
+    margin: 10px;
+    font-size: 18px;
+    color: rgb(126, 126, 126);
+    font-family: digitalFont;
 }
 
 #digit {
