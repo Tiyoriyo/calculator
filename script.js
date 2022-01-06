@@ -25,6 +25,8 @@ const ansDisp = document.getElementById('ans');
 
 let operator = null;
 let currentNumber = '';
+let num1;
+let num2;
 
 function add(a, b) {
     return a + b;
@@ -58,6 +60,39 @@ function addNumber(a) {
     currentNumber += a.id;
     digit.textContent = currentNumber;
 };
+
+function setOperator(a) {
+    if (!num1 && !num2) {
+        operator = a;
+        num1 = +currentNumber;
+        currentNumber = '';
+    }
+};
+
+function equalOperation() {
+    num2 = +currentNumber;
+    num1 = operate(operator, num1, num2);
+    digit.textContent = num1;
+    currentNumber = '';
+}
+
+equal.addEventListener('click', equalOperation);
+
+btnPlus.addEventListener('click', () => {
+    setOperator('+');
+});
+
+btnMinus.addEventListener('click', () => {
+    setOperator('-');
+});
+
+btnMultiply.addEventListener('click', () => {
+    setOperator('*');
+});
+
+btnDivide.addEventListener('click', () => {
+    setOperator('/');
+});
 
 one.addEventListener('click', () => {
     addNumber(one);
