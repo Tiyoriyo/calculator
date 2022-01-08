@@ -27,6 +27,7 @@ let operator = null;
 let currentNumber = '';
 let num1;
 let num2;
+let equalCheck;
 
 function add(a, b) {
     return a + b;
@@ -43,6 +44,13 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 };
+
+function logIt() {
+    console.log(num1);
+    console.log(num2);
+    console.log(currentNumber);
+    console.log(operator);
+}
 
 function operate(operator, num1, num2) {
     if (operator == '+') {
@@ -66,15 +74,34 @@ function setOperator(a) {
         operator = a;
         num1 = +currentNumber;
         currentNumber = '';
-    }
+    } else if (num1 && !num2 && !operator && !currentNumber) {
+        operator = a;
+    } else if (num1 && !num2 && currentNumber && operator) {
+        num2 = +currentNumber;
+        num1 = operate(operator, num1, num2);
+        operator = a;
+        num2 = '';
+        currentNumber = '';
+        digit.textContent = num1;
+    } 
 };
 
 function equalOperation() {
     num2 = +currentNumber;
     num1 = operate(operator, num1, num2);
-    digit.textContent = num1;
+    num2 = '';
+    operator = '';
     currentNumber = '';
+    digit.textContent = num1;
 }
+
+AC.addEventListener('click', () => {
+    num1 = 0;
+    num2 = 0;
+    operator = '';
+    currentNumber = '';
+    digit.textContent = currentNumber;
+});
 
 equal.addEventListener('click', equalOperation);
 
@@ -128,4 +155,25 @@ eight.addEventListener('click', () => {
 
 nine.addEventListener('click', () => {
     addNumber(nine);
+});
+
+zero.addEventListener('click', () => {
+    if (currentNumber == '0') {
+        return;
+    } else {
+        currentNumber += 0;
+        digit.textContent = currentNumber; 
+    };
+});
+
+decimal.addEventListener('click', () => {
+    if (currentNumber.indexOf('.') > -1) {
+        return;
+    } else if (currentNumber == '') {
+        currentNumber += '0.';
+        digit.textContent = currentNumber;
+    } else {
+        currentNumber += '.';
+        digit.textContent = currentNumber;
+    }
 });
