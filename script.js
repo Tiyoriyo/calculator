@@ -4,7 +4,7 @@ const mPlus = document.getElementById('m+');
 const mMinus = document.getElementById('m-');
 const mRecall = document.getElementById('mr');
 const AC = document.getElementById('ac');
-const plusMinus = document.getElementById('+-');
+const CE = document.getElementById('ce');
 const btnDivide = document.getElementById('/');
 const btnMultiply = document.getElementById('x');
 const seven = document.getElementById('7');
@@ -30,6 +30,7 @@ let num2;
 let equalCheck = false;
 let prevOperator;
 let prevCurrentNumber;
+digit.textContent = 0;
 
 function add(a, b) {
     return a + b;
@@ -91,7 +92,9 @@ function setOperator(a) {
         num2 = '';
         currentNumber = '';
         digit.textContent = num1;
-    } 
+    } else if (num1 && !num2 && !currentNumber && operator) {
+        operator = a;
+    }
 };
 
 function equalOperation() {
@@ -144,6 +147,15 @@ AC.addEventListener('click', () => {
     currentNumber = '';
     digit.textContent = currentNumber;
 });
+
+CE.addEventListener('click', () => {
+    if (digit.textContent == num1) {
+        return;
+    } else {
+        currentNumber = currentNumber.slice(0, -1);
+        digit.textContent = currentNumber;
+    }
+})
 
 equal.addEventListener('click', equalOperation);
 
