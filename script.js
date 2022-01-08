@@ -50,17 +50,6 @@ function divide(a, b) {
     return a / b;
 };
 
-function logIt() {
-    console.log(num1);
-    console.log(num2);
-    console.log(currentNumber);
-    console.log(operator);
-    console.log(prevCurrentNumber);
-    console.log(prevOperator);
-    console.log(equalCheck);
-    return 'results';
-}
-
 function operate(operator, num1, num2) {
     if (operator == '+') {
         return add(num1, num2);
@@ -152,10 +141,13 @@ function updatePrevNumbers() {
 }
 
 AC.addEventListener('click', () => {
-    num1 = 0;
-    num2 = 0;
+    num1 = '';
+    num2 = '';
     operator = '';
     currentNumber = '';
+    prevCurrentNumber = '';
+    prevOperator = '';
+    equalCheck = false;
     digit.textContent = currentNumber;
 });
 
