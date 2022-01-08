@@ -30,7 +30,9 @@ let num2;
 let equalCheck = false;
 let prevOperator;
 let prevCurrentNumber;
+let memory = '';
 digit.textContent = 0;
+
 
 function add(a, b) {
     return a + b;
@@ -94,11 +96,15 @@ function setOperator(a) {
         digit.textContent = num1;
     } else if (num1 && !num2 && !currentNumber && operator) {
         operator = a;
+    } else if (num1 && !num2 && currentNumber && !operator) {
+        operator = a;
+        num1 = +currentNumber;
+        currentNumber = '';
     }
 };
 
 function equalOperation() {
-    if (equalCheck === true && !prevCurrentNumber && !prevOperator) {
+    if (equalCheck === true && num1 && !num2 && currentNumber && operator && !prevCurrentNumber && !prevOperator) {
         updatePrevNumbers();
         num2 = +currentNumber;
         num1 = operate(operator, num1, num2);
@@ -106,6 +112,7 @@ function equalOperation() {
         operator = '';
         currentNumber = '';
         digit.textContent = num1;
+        console.log('ya');
     } else if (equalCheck === true && prevCurrentNumber && prevOperator && !operator && !currentNumber) {
         num2 = prevCurrentNumber;
         operator = prevOperator;
@@ -123,6 +130,10 @@ function equalOperation() {
         operator = '';
         currentNumber = '';
         digit.textContent = num1;
+    } else if (num1 && !num2 && !currentNumber && operator) {
+        return;
+    } else if (!num1 && !num2 && !currentNumber && operator) {
+        return;
     } else {
         console.log('yo');
         num2 = +currentNumber;
@@ -156,6 +167,29 @@ CE.addEventListener('click', () => {
         digit.textContent = currentNumber;
     }
 })
+
+mClear.addEventListener('click', () => {
+    memory = '';
+});
+
+mPlus.addEventListener('click', () => {
+    memory = +memory;
+    memory += +num1;
+});
+
+mMinus.addEventListener('click', () => {
+    memory = +memory;
+    memory -= +num1;
+});
+
+mRecall.addEventListener('click', () => {
+    if (!memory) {
+        return;
+    } else {
+        currentNumber = memory;
+        digit.textContent = currentNumber;
+    }
+});
 
 equal.addEventListener('click', equalOperation);
 
