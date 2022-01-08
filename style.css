@@ -13,8 +13,15 @@ html {
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 25px;
+}
+
+#signature {
+    font-family:'Courier New', Courier, monospace;
+    font-style: italic;
 }
 
 #container {
