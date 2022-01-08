@@ -27,7 +27,9 @@ let operator = null;
 let currentNumber = '';
 let num1;
 let num2;
-let equalCheck;
+let equalCheck = false;
+let prevOperator;
+let prevCurrentNumber;
 
 function add(a, b) {
     return a + b;
@@ -50,6 +52,10 @@ function logIt() {
     console.log(num2);
     console.log(currentNumber);
     console.log(operator);
+    console.log(prevCurrentNumber);
+    console.log(prevOperator);
+    console.log(equalCheck);
+    return 'results';
 }
 
 function operate(operator, num1, num2) {
@@ -80,6 +86,8 @@ function setOperator(a) {
         num2 = +currentNumber;
         num1 = operate(operator, num1, num2);
         operator = a;
+        updatePrevNumbers();
+        equalCheck = true;
         num2 = '';
         currentNumber = '';
         digit.textContent = num1;
@@ -87,12 +95,46 @@ function setOperator(a) {
 };
 
 function equalOperation() {
-    num2 = +currentNumber;
-    num1 = operate(operator, num1, num2);
-    num2 = '';
-    operator = '';
-    currentNumber = '';
-    digit.textContent = num1;
+    if (equalCheck === true && !prevCurrentNumber && !prevOperator) {
+        updatePrevNumbers();
+        num2 = +currentNumber;
+        num1 = operate(operator, num1, num2);
+        num2 = '';
+        operator = '';
+        currentNumber = '';
+        digit.textContent = num1;
+    } else if (equalCheck === true && prevCurrentNumber && prevOperator && !operator && !currentNumber) {
+        num2 = prevCurrentNumber;
+        operator = prevOperator;
+        num1 = operate(operator, num1, num2);
+        num2 = '';
+        operator = '';
+        currentNumber = '';
+        digit.textContent = num1;
+        console.log('kis');
+    } else if (equalCheck === true && prevCurrentNumber && prevOperator && operator && currentNumber) {
+        updatePrevNumbers();
+        num2 = +currentNumber;
+        num1 = operate(operator, num1, num2);
+        num2 = '';
+        operator = '';
+        currentNumber = '';
+        digit.textContent = num1;
+    } else {
+        console.log('yo');
+        num2 = +currentNumber;
+        num1 = operate(operator, num1, num2);
+        num2 = '';
+        operator = '';
+        currentNumber = '';
+        digit.textContent = num1; 
+        equalCheck = true;
+    }
+}
+
+function updatePrevNumbers() {
+    prevOperator = operator;
+    prevCurrentNumber = +currentNumber;
 }
 
 AC.addEventListener('click', () => {
